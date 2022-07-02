@@ -18,4 +18,8 @@ public class StoreService {
         return storeRepository.findAll();
     }
 
+    public List<Store> findClosestStore(int distance, double latitude,double longitude,long itemId){
+        return storeRepository.findClosestStore(distance, latitude, longitude, itemId);
+    }
+
 }

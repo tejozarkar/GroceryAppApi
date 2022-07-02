@@ -23,4 +23,10 @@ public class User {
     @Column
     private String email;
 
+    @Column
+    private Double longitude;
+
+    @Column
+    private Double latitude;
+
 }

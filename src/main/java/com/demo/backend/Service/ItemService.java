@@ -9,8 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 public class ItemService {
@@ -34,6 +34,10 @@ public class ItemService {
         Page<Item> pagedResult = itemRepository.findAll(search.toLowerCase(Locale.ROOT), paging);
 
         return new ItemsResponse(pagedResult.getTotalPages(), page, size, pagedResult.toList());
+    }
+
+    public Optional<Item> findById(Long id){
+        return itemRepository.findById(id);
     }
 
 
