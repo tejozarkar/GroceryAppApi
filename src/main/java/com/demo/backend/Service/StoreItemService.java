@@ -22,6 +22,10 @@ public class StoreItemService {
     @Autowired
     StoreItemRepository storeItemRepository;
 
+    public Integer removeFromInventory(long storeId, long itemId){
+        return storeItemRepository.removeFromInventory(storeId, itemId);
+    }
+
 
 //    public void dump(){
 //        List<Store> stores = storeService.findAllStores();

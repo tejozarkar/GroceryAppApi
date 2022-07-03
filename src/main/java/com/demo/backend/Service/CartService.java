@@ -25,13 +25,16 @@ public class CartService {
     @Autowired
     ItemService itemService;
 
+    @Autowired
+    StoreItemService storeItemService;
+
     public Cart addToCart(CartRequest cartRequest){
         Optional<Item> item = itemService.findById(cartRequest.getItemId());
         if(item.isPresent()){
             User user = userService.getCurrentUser();
             Store store = storeService.findClosestStore(10, user.getLatitude(), user.getLongitude(), item.get().getId()).get(0);
             Cart cart  =  new Cart(user,item.get(), store);
-            System.out.println("*************"+cart.getItem().getId());
+            storeItemService.removeFromInventory(store.getId(),item.get().getId());
             return cartRepository.save(cart);
         }else{
             return null;
